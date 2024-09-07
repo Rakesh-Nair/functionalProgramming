@@ -20,12 +20,12 @@ public class LearnFP01 {
 		//System.out.println("Sum is "+sum);
 		//sort(courses);
 		//printNumberSquare(numbers);
-		printLengthOfCourses(courses);
+		//printLengthOfCourses(courses);
 	}
 
-	private static void printLengthOfCourses(List<String> courses) {
+	private static void prsintLengthOfCourses(List<String> courses) {
 		// TODO Auto-generated method stub
-		courses.stream().map(x -> x+" of length "+x.length()).forEach(System.out::println);sax
+		courses.stream().map(x -> x+" of length "+x.length()).forEach(System.out::println);
 		System.out.println(courses.stream().map(x -> x.length()).collect(Collectors.toList()));
 	}
 
