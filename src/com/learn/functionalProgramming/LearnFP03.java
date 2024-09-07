@@ -43,7 +43,7 @@ class Course{
 	}
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", category=" + category + ", reviewScore=" + reviewScore + ", noOfStudents="
+		return "Course [name=" + name + ", reviewScore=" + reviewScore + ", noOfStudents="
 				+ noOfStudents + "]";
 	}
 	
@@ -68,17 +68,40 @@ public class LearnFP03 {
 		Predicate<? super Course> ReviewScoreGreaterThan80 = course -> course.getReviewScore() > 80;
 		Predicate<? super Course> ReviewScoreLessThan80 = course -> course.getReviewScore() < 80;
 		
-		System.out.println(courses.stream().allMatch(ReviewScoreGreaterThan80));
+		//System.out.println(courses.stream().allMatch(ReviewScoreGreaterThan80));
 		
-		System.out.println(courses.stream().anyMatch(ReviewScoreLessThan80));
+		//System.out.println(courses.stream().anyMatch(ReviewScoreLessThan80));
 
-		System.out.println(courses.stream().noneMatch(ReviewScoreGreaterThan80));
+		//System.out.println(courses.stream().noneMatch(ReviewScoreGreaterThan80));
 		
 		Comparator<? super Course> comparator = Comparator.comparing(Course::getReviewScore).thenComparing(Course::getNoOfStudents);
 		//System.out.println(courses.stream().sorted(comparator).collect(Collectors.toList()));
 		
 		Comparator<Course> nameComparator = Comparator.comparing(Course::getName).reversed();
-		System.out.println(courses.stream().sorted(nameComparator).collect(Collectors.toList()));
+		//System.out.println(courses.stream().sorted(nameComparator).collect(Collectors.toList()));
+		
+		//System.out.println(courses.stream().sorted(Comparator.comparing(Course::getName)).limit(5).collect(Collectors.toList()));
+		
+//		System.out.println(
+//				courses.stream()
+//				.takeWhile(t -> t.getReviewScore() > 85)
+//				.collect(Collectors.toList()));
+		
+//		System.out.println(
+//				courses.stream()
+//				.dropWhile(t -> t.getReviewScore() <85 )
+//				.collect(Collectors.toList()));
+		
+		System.out.println(courses
+				.stream()
+				.filter(t -> t.getReviewScore() > 98)
+				.findAny()
+				.orElse(new Course("Kubernetes","Cloud",81, 200)));
+		
+		System.out.println(courses
+				.stream()
+				.filter(t -> t.getReviewScore() > 95)
+				.findFirst());
 
 	}
 }
