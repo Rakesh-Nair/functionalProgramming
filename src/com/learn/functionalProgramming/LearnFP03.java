@@ -1,5 +1,6 @@
 package com.learn.functionalProgramming;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -61,6 +62,7 @@ public class LearnFP03 {
 				new Course("Azure","Cloud",90, 21000),
 				new Course("Docker","Cloud",84, 200),
 				new Course("Kubernetes","Cloud",81, 200));
+		List<String> list = List.of("Spring","Spring Boot","API","Microservices");
 		
 		//allMatch, noneMatch, anyMatch
 		
@@ -92,16 +94,26 @@ public class LearnFP03 {
 //				.dropWhile(t -> t.getReviewScore() <85 )
 //				.collect(Collectors.toList()));
 		
-		System.out.println(courses
-				.stream()
-				.filter(t -> t.getReviewScore() > 98)
-				.findAny()
-				.orElse(new Course("Kubernetes","Cloud",81, 200)));
+//		System.out.println(courses
+//				.stream()
+//				.filter(t -> t.getReviewScore() > 98)
+//				.findAny()
+//				.orElse(new Course("Kubernetes","Cloud",81, 200)));
+//		
+//		System.out.println(courses
+//				.stream()
+//				.filter(t -> t.getReviewScore() > 95)
+//				.findFirst());
 		
-		System.out.println(courses
-				.stream()
-				.filter(t -> t.getReviewScore() > 95)
-				.findFirst());
+		//System.out.println(courses.stream().filter(t -> t.getReviewScore() >90).count());
+		
+		//System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory)));
+		
+		//System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.counting())));
+		
+		//System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.maxBy(Comparator.comparing(Course::getReviewScore)))));
+		
+		System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.mapping(Course::getName, Collectors.toList()))));
 
 	}
 }
